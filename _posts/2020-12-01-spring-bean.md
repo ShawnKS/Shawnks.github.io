@@ -4,7 +4,7 @@ title: "Spring学习笔记1"
 # subtitle: ' ""'
 date: 2020-12-01 10:43:00
 author: "Shawn"
-# header-img: "img/post-bg-2020-11.jpg"
+header-style: text
 catalog: true
 tags:
   - java
@@ -21,7 +21,7 @@ tags:
 
 ​	下面是一个使用样例，首先搭建一个maven项目，配置Spring依赖
 
-```
+```java
 <dependency>
   <groupId>org.springframework</groupId>
   <artifactId>spring-context</artifactId>
@@ -49,7 +49,7 @@ tags:
 
 ​	在src根目录下创建一个AppConfig的配置类，这个配置类也就是管理一个或多个bean 的配置类，并在其内部声明一个myBean的bean，并创建其对应的实体类 。注意，**如果这里没有指定bean的名称，Spring默认采用的是“方法名”+“首字母小写”的配置方式**。
 
-```
+```java
 @Configuration
 public class AppConfig {
     // 使用@Bean 注解表明myBean需要交给Spring进行管理
@@ -67,7 +67,7 @@ public class MyBean {
 }
 ```
 
-```
+```java
 public class SpringBeanApplicationTests {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -108,7 +108,7 @@ MyBean Initializing
 
 一个是AppConfigWithActiveProfile ，一个是AppConfigWithInactiveProfile，当系统环境是 "like"的时候就注册 AppConfigWithActiveProfile ，如果是 "wenke"，就注册 AppConfigWithInactiveProfile，来看一下这个需求如何实现
 
-```
+```java
 // 学科
 public class Subject {
 
@@ -131,7 +131,7 @@ public class Subject {
 
  AppConfigWithActiveProfile.java 注册Profile 为like 的时候 
 
-```
+```java
 @Profile("like")
 @Configuration
 public class AppConfigWithActiveProfile {
@@ -148,7 +148,7 @@ public class AppConfigWithActiveProfile {
 
  AppConfigWithInactiveProfile.java 注册Profile 为wenke 的时候 
 
-```
+```java
 @Profile("wenke")
 @Configuration
 public class AppConfigWithInactiveProfile {
@@ -164,7 +164,7 @@ public class AppConfigWithInactiveProfile {
 
  修改一下对应的测试类，设置系统环境，当Profile 为like 和 wenke 的时候分别注册各自对应的属性 
 
-```
+```java
 // ------------------------------ 测试 profile  ------------------------------
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 // 激活 like 的profile
@@ -199,7 +199,7 @@ bean的非单例原型范围会使每次发出对该特定bean的请求时都创
 
 新建一个AppConfigWithAliasAndScope配置类，用来定义多例的bean，
 
-```
+```java
 @Configuration
 public class AppConfigWithAliasAndScope {
 
@@ -218,7 +218,7 @@ public class AppConfigWithAliasAndScope {
 
  测试一下多例的情况： 
 
-```
+```java
 // ------------------------------ 测试scope  ------------------------------
 ApplicationContext context = new AnnotationConfigApplicationContext(AppConfigWithAliasAndScope.class);
 MyBean myBean = (MyBean) context.getBean("b1");
@@ -247,7 +247,7 @@ singleton和prototype 一般都用在普通的Java项目中，而request、sessi
 
 下面来演示一下：
 
-```
+```java
 @Lazy
 @Configuration
 @ComponentScan(basePackages = "com.spring.configuration.pojo")
@@ -269,7 +269,7 @@ public class AppConfigWithLazy {
 
  修改测试类 
 
-```
+```java
 public class SpringConfigurationApplication {
 
     public static void main(String[] args) {
@@ -292,7 +292,7 @@ public class SpringConfigurationApplication {
 
 新建三个Bean，分别是FirstBean、SecondBean、ThirdBean三个普通的bean，新建AppConfigWithDependsOn并配置它们之间的依赖关系
 
-```
+```java
 public class FirstBean {
 
     @Autowired
@@ -307,7 +307,7 @@ public class FirstBean {
 }
 ```
 
-```
+```java
 public class SecondBean {
 
     public SecondBean() {
@@ -316,7 +316,7 @@ public class SecondBean {
 }
 ```
 
-```
+```java
 public class ThirdBean {
 
     public ThirdBean() {
@@ -325,7 +325,7 @@ public class ThirdBean {
 }
 ```
 
-```
+```java
 @Configuration
 public class AppConfigWithDependsOn {
 
@@ -352,7 +352,7 @@ public class AppConfigWithDependsOn {
 
  使用测试类进行测试，如下 
 
-```
+```java
 // ------------------------------ 测试 DependsOn  ------------------------------
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfigWithDependsOn.class);
 context.getBean(FirstBean.class);
@@ -384,7 +384,7 @@ context.close();
 
 新建一个AppConfigWithPrimary类，在方法级别上定义@Primary注解
 
-```
+```java
 @Configuration
 public class AppConfigWithPrimary {
 
@@ -403,7 +403,7 @@ public class AppConfigWithPrimary {
 
 上面代码定义了两个bean ，其中myBeanTwo 由@Primary 进行标注，表示它首先会进行注册，使用测试类进行测试 
 
-```
+```java
 // ------------------------------ 测试 Primary  ------------------------------
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfigWithPrimary.class);
 MyBean bean = context.getBean(MyBean.class);

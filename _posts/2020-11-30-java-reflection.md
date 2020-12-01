@@ -4,7 +4,7 @@ title: "java反射总结"
 # subtitle: ' ""'
 date: 2020-11-30 15:35:00
 author: "Shawn"
-# header-img: "img/post-bg-2020-11.jpg"
+header-style: text
 catalog: true
 tags:
   - java
