@@ -10,7 +10,7 @@ tags:
   - java
 ---
 
-## java Queue中add/offer, element/peek, remove/poll区别
+### java Queue中add/offer, element/peek, remove/poll区别
 
  java Queue中 add/offer，element/peek，remove/poll中的三个方法均为重复的方法，在选择使用时不免有所疑惑，这里简单区别一下：
 
@@ -36,3 +36,14 @@ poll     移除并返问队列头部的元素   如果队列为空，则返回nu
 peek    返回队列头部的元素       如果队列为空，则返回null
 put     添加一个元素            如果队列满，则阻塞
 take    移除并返回队列头部的元素   如果队列为空，则阻塞
+
+### 接口实例化/静态代理
+
+### 反射/动态代理
+
+https://segmentfault.com/a/1190000011291179
+
+思考：为什么要代理？
+
+私以为这个问题和为什么要有容器是一样的，当工程量非常巨大的时候，我们不可能再自己去重写一个巨大的类，因此我们需要对原先的类再做封装和操作的时候，就需要用到容器思想，代理就是这样类似的想法。
+

@@ -9,7 +9,7 @@ catalog: true
 tags:
   - SQL
   - Mysql
-  - 并发处理
+  - 并发
 ---
 
 ## 数据库复习笔记1
