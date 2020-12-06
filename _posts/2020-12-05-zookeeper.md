@@ -109,3 +109,4 @@ ZooKeeper集合中可以有不同数量的节点。那么，让我们分析一�
 | 跟随者（Follower）                | follower从客户端接收写入请求，并将它们转发到leader znode。   |
 | 请求处理器（request processor）   | 只存在于leader节点。它管理来自follower节点的写入请求。       |
 | 原子广播（atomic broadcasts）     | 负责广播从leader节点到follower节点的变化。                   |
+
