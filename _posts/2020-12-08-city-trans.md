@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "论文解读 city transfer related"
-# subtitle: ' "拿什么拯救你，城市计算"'
+subtitle: ' "拿什么拯救你，城市计算"'
 date: 2020-12-8 21:29:00
 author: "Shawn"
 header-style: text
@@ -38,7 +38,25 @@ loss两部分组成，一部分是在源数据已经训练好的模型上把targ
 
 > Matching with a short period of service data. While the target city has only a little service data, this could still provide hints to buildM. We focus on the time span when both source and target cities have service data (i.e.,TD), then calculate the correlations (e.g., Pearson coefﬁcient) between each target region and source region with the corresponding service data. Finally, for each target region, we choose the source region with the largest correlation value. 
 >
-> Matchingwithalongperiodofauxiliarydata(ifapplicable). As there is little service data in the target city, the above service-data-based correlation similarity between a source region and a target regionmaynotbeveryreliable. Inreality,sometimeswecanﬁndanotheropenly-accessibleauxiliary data that correlates with the service data, which may help calculate the inter-city region similarity more robustly. For example, to predict crowd ﬂow, public social media check-ins can be a useful proxy according to literature [16]. That is, instead of the short period of crowd ﬂow data, we use the long period of openly available check-in data to build the correlation between two regions. 
+> Matching with along period of auxiliary data(if applicable). As there is little service data in the target city, the above service-data-based correlation similarity between a source region and a target region may not be very reliable. In reality,sometimes we can ﬁnd another openly-accessible auxiliary data that correlates with the service data, which may help calculate the inter-city region similarity more robustly. For example, to predict crowd ﬂow, public social media check-ins can be a useful proxy according to literature [16]. That is, instead of the short period of crowd ﬂow data, we use the long period of openly available check-in data to build the correlation between two regions. 
 
 总结就是俩都很扯
+
+**Transfer Knowledge between Cities** HKUST
+
+读了几篇city transfer的work发现全是杨强老师组做的..
+
+motivation
+
+> An interesting question arises: can we transfer knowledge from a city where data are suﬃcient, to a city which faces either the label scarcity or the data insuﬃciency problem? As demonstrated in Figure 1, based on Beijing’s data, we can learn the knowledge about underlying connections between diﬀerent modalities; e.g., air pollution might be related to traﬃc congestion which would be caused by a dense road network structure. With such knowledge transferred from Beijing, we may be able to infer Baoding’s air pollution based on road network structures even if there exists no traﬃc data like taxi trajectories. In this example, Beijing is a source domain where knowledge comes from, and Baoding is a target domain that we transfer knowledge to. 
+
+模型
+
+> In this section, we present our method in detail. We ﬁrst introduce the general framework in Figure 3, which involves two major pipelines, i.e., learning semantically related dictionaries from a source domain (represented by broken blue arrows), and transferring dictionaries and instances from a source to a target domain (shown in red solid arrows). After we introduce the notations and problem deﬁnitions, we detail how to learn semantically related dictionaries, and transfer the dictionaries and instances. The complexity analysis is given at the end of this section.
+
+pipelines:
+
+1. Learn semantically related dictionaries
+2. Transfer dictionaries and instances
+3. 
 
