@@ -6,7 +6,7 @@ author: "Shawn"
 header-style: text
 catalog: true
 tags:
-  - time series
+  - timeseries
 ---
 
 #### DEEP MULTI-TASK REPRESENTATION LEARNING: A TENSOR FACTORISATION APPROACH
