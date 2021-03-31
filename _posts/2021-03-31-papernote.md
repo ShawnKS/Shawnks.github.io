@@ -61,6 +61,20 @@ Propose a deep non-negative tensor factorization(DNTF) method to find a tensor s
 
 ### Irregular Sampled Time Series Related
 
+#### Neural Ordinary Differential Equations(NIPS2018 Best Paper)
+
+神经常微分方程(直球翻译
+
+- We demonstrate these properties in continuous-depth residual networks and continuous-time latent variable models. We also construct continuous normalizing flows, a generative model that can train by maximum likelihood, without partitioning or ordering the data dimensions.
+
 #### MULTI-TIME ATTENTION NETWORKS FOR IRREGULARLY SAMPLED TIME SERIES
 
+- Focus on solve the irregular time sample in time series data. We generalize RNNs to have continuous-time hidden dynamics defined by ordinary differential equations (ODEs), a model we call ODE-RNNs. Furthermore, we use ODE-RNNs to replace the recognition network of the recently-proposed Latent ODE model. Both ODE-RNNs and Latent ODEs can naturally handle arbitrary time gaps between observations, and can explicitly model the probability of observation times using Poisson processes.
+- Consider optimizing a scalar-valued loss function $L()$, whose input is the result of an ODE solver:
+
+$$
+L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\mathbf{z}\left(t_{0}\right)+\int_{t_{0}}^{t_{1}} f(\mathbf{z}(t), t, \theta) d t\right)=L\left(\operatorname{ODESolve}\left(\mathbf{z}\left(t_{0}\right), f, t_{0}, t_{1}, \theta\right)\right)
+$$
+
 - 
+
